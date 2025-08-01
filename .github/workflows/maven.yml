@@ -7,9 +7,8 @@ on:
     branches: [ develop, main ]
 
 jobs:
-  build:
+  build:  # This is the job name that Mergify will check
     runs-on: ubuntu-latest
-    name: Java CI with Maven  # This name must match the check-success condition in Mergify
 
     steps:
     - uses: actions/checkout@v4

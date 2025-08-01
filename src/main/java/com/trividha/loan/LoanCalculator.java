@@ -1,8 +1,8 @@
-package com.trividha;
+package com.trividha.loan;
 
 import java.util.Scanner;
 
-public class LoanInterestCalculator {
+public class LoanCalculator {  // Changed from LoanInterestCalculator
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -30,4 +30,3 @@ public class LoanInterestCalculator {
         scanner.close();
     }
 }
-
