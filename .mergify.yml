@@ -4,14 +4,13 @@ pull_request_rules:
     conditions:
       - base=develop
       - "#approved-reviews-by>=1"
-      - "check-success=Java CI with Maven"  # Matches your GitHub Actions job name
+      - "check-success=build"  # This should match your GitHub Actions job name
       - "label!=work-in-progress"
       - "label!=do-not-merge"
-      - "#conflicts=0"
+      - "-conflict"  # Fixed: removed # and changed to -conflict
     actions:
       merge:
         method: squash
-        strict: smart
         commit_message_template: |
           {{title}} (#{{number}})
           
@@ -26,13 +25,12 @@ pull_request_rules:
     conditions:
       - base=main
       - "#approved-reviews-by>=1"
-      - "check-success=Java CI with Maven"
+      - "check-success=build"
       - "label=release-ready"
-      - "#conflicts=0"
+      - "-conflict"  # Fixed: removed # and changed to -conflict
     actions:
       merge:
         method: merge
-        strict: smart
         commit_message_template: |
           {{title}} (#{{number}})
           
@@ -77,7 +75,7 @@ pull_request_rules:
   - name: "🔄 Auto-rebase PRs targeting develop"
     conditions:
       - base=develop
-      - "#conflicts=0"
+      - "-conflict"  # Fixed: removed # and changed to -conflict
       - "label=autorebase"
     actions:
       rebase: {}
@@ -88,16 +86,12 @@ queue_rules:
     conditions:
       - base=develop
       - "#approved-reviews-by>=1"
-      - "check-success=Java CI with Maven"
-    queue_conditions:
-      - "check-success=Java CI with Maven"
+      - "check-success=build"
     
   # Main branch merge queue
   - name: main-queue
     conditions:
       - base=main
       - "#approved-reviews-by>=1"
-      - "check-success=Java CI with Maven"
+      - "check-success=build"
       - "label=release-ready"
-    queue_conditions:
-      - "check-success=Java CI with Maven"
