@@ -1,0 +1,19 @@
+pull_request_rules:
+  - name: automatic merge to develop
+    conditions:
+      - base=develop
+      - label=automerge
+      - "#approved-reviews-by>=1"
+    actions:
+      merge:
+        method: squash
+
+  - name: merge to main only on release tag
+    conditions:
+      - base=main
+      - label=release
+      - "#approved-reviews-by>=1"
+    actions:
+      merge:
+        method: squash
+
